@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Instructions - Second Anniversary Special</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://www.lego.com/favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="lego-header">
+        <div class="logo-container" onclick="location.reload()">
+            <img src="https://www.lego.com/favicon.ico" alt="LEGO" style="width: 50px; height: 50px;">
+        </div>
+        <nav class="nav-links">
+            <div class="nav-item">產品</div>
+            <div class="nav-item">探索</div>
+            <div class="nav-item">支援服務</div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            主頁 > 客戶服務 > 拼搭說明書 > Anniversary Special Edition
+        </div>
+
+        <!-- Product Title -->
+        <div class="product-title-section">
+            <div class="set-number">Set 20260211</div>
+            <h1 class="set-title">Second Anniversary Special Edition</h1>
+        </div>
+
+        <!-- Layout Grid -->
+        <div class="instructions-grid">
+            <!-- Video Section (pretending to be the manual viewer) -->
+            <div class="video-container" id="videoWrapper">
+                <div class="overlay-start" id="startOverlay">
+                    <div class="play-button-icon">
+                        <div class="play-triangle"></div>
+                    </div>
+                </div>
+                <!-- User needs to put video.mp4 in the same directory -->
+                <video id="mainVideo" class="video-player" playsinline>
+                    <source src="video.mp4" type="video/mp4">
+                    <source src="video.webm" type="video/webm">
+                    您的瀏覽器不支援影片播放。
+                </video>
+            </div>
+
+            <!-- Side Panel -->
+            <aside class="side-panel">
+                <a href="#" class="action-btn" onclick="playVideo()">開始拼搭</a>
+                <a href="#" class="action-btn secondary-btn" onclick="alert('PDF 下載功能目前維護中，請直接觀看影片！')">下載 PDF 說明書 (67 MB)</a>
+                <a href="#" class="action-btn secondary-btn">3D 拼搭檢視</a>
+
+                <ul class="details-list">
+                    <li>
+                        <span>年份</span>
+                        <span>2026</span>
+                    </li>
+                    <li>
+                        <span>零件數</span>
+                        <span>countless love</span>
+                    </li>
+                    <li>
+                        <span>適合年齡</span>
+                        <span>18+</span>
+                    </li>
+                    <li>
+                        <span>包括人偶</span>
+                        <span>2</span>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Simple Footer -->
+    <footer class="simple-footer">
+        <p>&copy; 2026 The LEGO Group. All rights reserved.</p>
+        <p>隱私權政策 | Cookie | 法律聲明 | 使用條款</p>
+    </footer>
+
+    <script>
+        const video = document.getElementById('mainVideo');
+        const overlay = document.getElementById('startOverlay');
+        const wrapper = document.getElementById('videoWrapper');
+
+        function playVideo(e) {
+            if(e) e.preventDefault();
+            
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 500);
+            
+            video.play().catch(error => {
+                console.log("Auto-play was prevented. Please interact with the document first.");
+            });
+            video.controls = true;
+        }
+
+        overlay.addEventListener('click', playVideo);
+
+        // Optional: Pause if they click away or something? No, keep it simple.
+        video.addEventListener('ended', () => {
+             // Show overlay again or show a "Happy Anniversary" message?
+             // Maybe just leave it.
+        });
+    </script>
+</body>
+</html>

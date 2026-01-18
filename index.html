@@ -1,42 +1,118 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <title>我的仿樂高網頁</title>
-    <style>
-        body { margin: 0; font-family: 'Arial Black', sans-serif; background-color: #FFFFFF; }
-        /* 樂高標誌性的黃色頂部 */
-        header { background-color: #FFD500; padding: 20px; text-align: center; border-bottom: 5px solid #E3000B; }
-        h1 { color: #E3000B; margin: 0; font-size: 3rem; text-shadow: 2px 2px #fff; }
-        
-        /* 產品展示區 */
-        .container { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; }
-        .card { 
-            background: white; border: 4px solid #005596; border-radius: 15px; 
-            margin: 15px; width: 250px; overflow: hidden; box-shadow: 5px 5px 0px #005596;
-        }
-        .card img { width: 100%; height: 200px; object-fit: cover; }
-        .card-info { padding: 15px; text-align: center; }
-        .btn { 
-            background-color: #E3000B; color: white; padding: 10px 20px; 
-            text-decoration: none; border-radius: 50px; display: inline-block; margin-top: 10px;
-        }
-        .btn:hover { background-color: #005596; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Building Instructions - Service - LEGO.com</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://www.lego.com/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <header>
-        <h1>LEGO STYLE</h1>
+
+    <!-- Header -->
+    <header class="lego-header">
+        <div class="logo-container" onclick="location.reload()">
+            <img src="https://www.lego.com/favicon.ico" alt="LEGO" style="width: 50px; height: 50px;">
+        </div>
+        <nav class="nav-links">
+            <div class="nav-item">產品</div>
+            <div class="nav-item">探索</div>
+            <div class="nav-item">支援服務</div>
+        </nav>
     </header>
-    <div class="container">
-        <div class="card">
-            <img src="https://via.placeholder.com/250x200?text=LEGO+Set" alt="Product">
-            <div class="card-info">
-                <h3>經典積木組</h3>
-                <p>$999</p>
-                <a href="#" class="btn">立即購買</a>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Breadcrumb -->
+        <div class="main-content">
+            <div class="breadcrumb">
+                主頁 > 客戶服務 > 拼搭說明書
             </div>
         </div>
+
+        <!-- Search Hero Section -->
+        <div class="search-hero">
+            <h1 class="search-title">讓我們搜尋您的拼搭說明書</h1>
+            <p class="search-subtitle">
+                搜尋盒組名稱或號碼<br>
+                輸入您的套裝編號，我們將帶您回到那個特別的時刻。
+            </p>
+
+            <form id="searchForm" class="search-box-wrapper">
+                <input type="text" class="search-input" id="searchInput" placeholder="您可以在盒子和官網產品頁面上找到盒組編號。" required>
+                <button type="submit" class="search-btn">
+                    搜尋
+                </button>
+            </form>
+
+            <div class="help-links">
+                <a href="#">如何找到套裝編號？</a>
+                <a href="#">找不到說明書？</a>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="app-promo-section">
+                <h2>使用 LEGO® Builder 應用程式查找拼搭說明書</h2>
+                <p>LEGO Builder 應用程式是個數位拼砌工具，讓您更容易地按照步驟拼搭套裝。裡面有數百個不論新舊的盒組拼搭說明，您可以立即查看或保存。該應用程式讓您能輕鬆依據套裝編號、主題或年份進行搜尋。</p>
+                
+                <p>使用LEGO® Builder應用程式，您可以：</p>
+                <ul>
+                    <li><strong>保存所有套裝：</strong> 將所有說明書儲存在同一個地方。</li>
+                    <li><strong>3D 拼搭模式：</strong> 放大並旋轉您的模型，享受身歷其境的拼搭體驗並獲得逐步的拼砌指導</li>
+                    <li><strong>共同拼搭模式：</strong> 與親朋好友一起，作為一個團隊共同拼搭。</li>
+                </ul>
+                
+                <p>立即下載LEGO® Builder，讓您的拼搭體驗升級！</p>
+                
+                <h3 style="margin-top: 30px;">下載 LEGO® Builder</h3>
+                <div class="app-buttons">
+                    <a href="#" class="store-btn">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Download on the App Store">
+                    </a>
+                    <a href="#" class="store-btn">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="GET IT ON Google Play">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Simple Footer -->
+    <footer class="simple-footer">
+        <p>&copy; 2026 The LEGO Group. All rights reserved.</p>
+        <p>隱私權政策 | Cookie | 法律聲明 | 使用條款</p>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader"></div>
+        <h2>正在搜尋相關說明書...</h2>
+        <p>請稍候</p>
     </div>
+
+    <script>
+        const searchForm = document.getElementById('searchForm');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+
+        searchForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const input = document.getElementById('searchInput').value;
+            
+            // Show loading animation
+            loadingOverlay.style.display = 'flex';
+            
+            // Fake delay then redirect
+            setTimeout(() => {
+                // You can add logic here if you want to validate the code
+                if (input === '20260211' || input === '75691')
+                    window.location.href = 'product.html';
+                else {
+                    loadingOverlay.style.display = 'none';
+                    return;
+                }
+            }, 2000);
+        });
+    </script>
 </body>
 </html>
