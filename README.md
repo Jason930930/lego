@@ -4,6 +4,12 @@
 
 ## 如何使用
 
+**git**
+git status
+git add .
+git commit -m "write your message"
+git push origin main
+
 1. **準備影片**：
    - 準備好您的週年紀念影片。
    - 將影片檔名命名為 `video.mp4`。

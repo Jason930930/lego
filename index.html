@@ -45,6 +45,17 @@
                 </button>
             </form>
 
+            <div id="searchError" style="display: none; color: #d01012; background: #fff4f4; border: 1px solid #e0e0e0; border-left: 4px solid #d01012; padding: 15px; margin: 20px auto; max-width: 600px; border-radius: 4px; text-align: left;">
+                <div style="display: flex; align-items: flex-start; gap: 10px;">
+                    <span style="font-size: 20px;">ℹ</span>
+                    <div>
+                        <strong>抱歉，我們找不到該盒組</strong><br>
+                        請檢查您的盒組編號是否正確，然後再試一次。<br>
+                        <span style="font-size: 12px; color: #666;"></span>
+                    </div>
+                </div>
+            </div>
+
             <div class="help-links">
                 <a href="#">如何找到套裝編號？</a>
                 <a href="#">找不到說明書？</a>
@@ -94,24 +105,29 @@
     <script>
         const searchForm = document.getElementById('searchForm');
         const loadingOverlay = document.getElementById('loadingOverlay');
+        const searchError = document.getElementById('searchError');
 
         searchForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            const input = document.getElementById('searchInput').value;
+            const input = document.getElementById('searchInput').value.trim();
             
-            // Show loading animation
+            // UI Reset
+            searchError.style.display = 'none';
             loadingOverlay.style.display = 'flex';
             
-            // Fake delay then redirect
+            // Fake delay then validate
             setTimeout(() => {
-                // You can add logic here if you want to validate the code
-                if (input === '20260211' || input === '75691')
+                // Check against valid codes
+                // 20260211, 75691 were seen in previous context, keeping them just in case
+                if (input === '20260211' || input === '75691') {
                     window.location.href = 'product.html';
-                else {
+                } else {
                     loadingOverlay.style.display = 'none';
-                    return;
+                    searchError.style.display = 'block';
                 }
-            }, 2000);
+            }, 1000);
+
+            loadingOverlay.style.display = 'none';
         });
     </script>
 </body>
