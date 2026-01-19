@@ -25,7 +25,7 @@
     <main class="main-content">
         <!-- Breadcrumb -->
         <div class="breadcrumb">
-            主頁 > 客戶服務 > 拼搭說明書 > Anniversary Special Edition
+            <a href="https://www.lego.com/zh-tw">主頁</a> > <a href="https://www.lego.com/zh-tw/service">客戶服務</a> > 拼搭說明書 > Anniversary Special Edition
         </div>
 
         <!-- Product Title -->
@@ -38,22 +38,21 @@
         <div class="instructions-grid">
             <!-- Video Section (pretending to be the manual viewer) -->
             <div class="video-container" id="videoWrapper">
-                <div class="overlay-start" id="startOverlay">
-                    <div class="play-button-icon">
-                        <div class="play-triangle"></div>
-                    </div>
-                </div>
-                <!-- User needs to put video.mp4 in the same directory -->
-                <video id="mainVideo" class="video-player" playsinline>
-                    <source src="video.mp4" type="video/mp4">
-                    <source src="video.webm" type="video/webm">
-                    您的瀏覽器不支援影片播放。
-                </video>
+                <!-- Google Drive Video Embed -->
+                <!-- Replace VIDEO_ID with your actual Google Drive File ID -->
+                <iframe 
+                    class="video-player" 
+                    src="https://drive.google.com/file/d/1Oeobmrn6veOOmPArXbK3-cXGH_D-r8WN/preview" 
+                    width="640" 
+                    height="480" 
+                    allow="autoplay"
+                    allowfullscreen>
+                </iframe>
             </div>
 
             <!-- Side Panel -->
             <aside class="side-panel">
-                <a href="#" class="action-btn" onclick="playVideo()">開始拼搭</a>
+                <a href="#videoWrapper" class="action-btn">開始拼搭</a>
                 <a href="#" class="action-btn secondary-btn" onclick="alert('PDF 下載功能目前維護中，請直接觀看影片！')">下載 PDF 說明書 (67 MB)</a>
                 <a href="#" class="action-btn secondary-btn">3D 拼搭檢視</a>
 
@@ -86,31 +85,8 @@
     </footer>
 
     <script>
-        const video = document.getElementById('mainVideo');
-        const overlay = document.getElementById('startOverlay');
-        const wrapper = document.getElementById('videoWrapper');
-
-        function playVideo(e) {
-            if(e) e.preventDefault();
-            
-            overlay.style.opacity = '0';
-            setTimeout(() => {
-                overlay.style.display = 'none';
-            }, 500);
-            
-            video.play().catch(error => {
-                console.log("Auto-play was prevented. Please interact with the document first.");
-            });
-            video.controls = true;
-        }
-
-        overlay.addEventListener('click', playVideo);
-
-        // Optional: Pause if they click away or something? No, keep it simple.
-        video.addEventListener('ended', () => {
-             // Show overlay again or show a "Happy Anniversary" message?
-             // Maybe just leave it.
-        });
+        // Google Drive video handling is mostly strictly inside the iframe.
+        // Keeping script tag in case we need other logic later.
     </script>
 </body>
 </html>

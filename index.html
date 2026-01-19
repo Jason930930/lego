@@ -26,7 +26,7 @@
         <!-- Breadcrumb -->
         <div class="main-content">
             <div class="breadcrumb">
-                主頁 > 客戶服務 > 拼搭說明書
+                <a href="https://www.lego.com/zh-tw">主頁</a> > <a href="https://www.lego.com/zh-tw/service">客戶服務</a> > 拼搭說明書
             </div>
         </div>
 
@@ -121,13 +121,12 @@
                 // 20260211, 75691 were seen in previous context, keeping them just in case
                 if (input === '20260211' || input === '75691') {
                     window.location.href = 'product.html';
+                    loadingOverlay.style.display = 'none';
                 } else {
                     loadingOverlay.style.display = 'none';
                     searchError.style.display = 'block';
                 }
             }, 1000);
-
-            loadingOverlay.style.display = 'none';
         });
     </script>
 </body>
