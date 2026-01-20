@@ -25,13 +25,13 @@
     <main class="main-content">
         <!-- Breadcrumb -->
         <div class="breadcrumb">
-            <a href="https://www.lego.com/zh-tw">主頁</a> > <a href="https://www.lego.com/zh-tw/service">客戶服務</a> > 拼搭說明書 > Anniversary Special Edition
+            <a href="https://www.lego.com/zh-tw">主頁</a> > <a href="https://www.lego.com/zh-tw/service">客戶服務</a> > <a href="index.html">拼搭說明書</a> > <span id="crumb-title">Anniversary Special Edition</span>
         </div>
 
         <!-- Product Title -->
         <div class="product-title-section">
-            <div class="set-number">Set 20260211</div>
-            <h1 class="set-title">Second Anniversary Special Edition</h1>
+            <div class="set-number" id="set-num-display">Set 20260211</div>
+            <h1 class="set-title" id="main-title">Second Anniversary Special Edition</h1>
         </div>
 
         <!-- Layout Grid -->
@@ -52,26 +52,26 @@
 
             <!-- Side Panel -->
             <aside class="side-panel">
-                <a href="#videoWrapper" class="action-btn">開始拼搭</a>
-                <a href="#" class="action-btn secondary-btn" onclick="alert('PDF 下載功能目前維護中，請直接觀看影片！')">下載 PDF 說明書 (67 MB)</a>
-                <a href="#" class="action-btn secondary-btn">3D 拼搭檢視</a>
+                <a class="action-btn" id="startBuildBtn">開始拼搭</a>
+                <a href="https://drive.google.com/file/d/1Oeobmrn6veOOmPArXbK3-cXGH_D-r8WN/view?usp=drive_link" class="action-btn secondary-btn">下載 PDF 說明書 (67 MB)</a>
+                <a href="https://drive.google.com/drive/folders/1_r1RuNBsR1RVtiK_dYZBmlMSNbLpZF_v?usp=drive_link" class="action-btn secondary-btn">3D 拼搭檢視</a>
 
                 <ul class="details-list">
                     <li>
                         <span>年份</span>
-                        <span>2026</span>
+                        <span id="detail-year">2026</span>
                     </li>
                     <li>
                         <span>零件數</span>
-                        <span>countless love</span>
+                        <span id="detail-pieces">countless love</span>
                     </li>
                     <li>
                         <span>適合年齡</span>
-                        <span>18+</span>
+                        <span id="detail-age">18+</span>
                     </li>
                     <li>
                         <span>包括人偶</span>
-                        <span>2</span>
+                        <span id="detail-minifigs">2</span>
                     </li>
                 </ul>
             </aside>
@@ -85,8 +85,48 @@
     </footer>
 
     <script>
-        // Google Drive video handling is mostly strictly inside the iframe.
-        // Keeping script tag in case we need other logic later.
+        // Check for specific set number to show custom content
+        const urlParams = new URLSearchParams(window.location.search);
+        const setNumber = urlParams.get('set');
+
+        if (setNumber === '75691') {
+            const videoWrapper = document.getElementById('videoWrapper');
+            if (videoWrapper) {
+                videoWrapper.innerHTML = `
+                    <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: #fff;">
+                        <img src="https://www.lego.com/cdn/product-assets/product.img.pri/75691_Prod.png?format=webply&fit=bounds&quality=70&width=500&height=500&dpr=1.5" 
+                             alt="LEGO Set 75691" 
+                             style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                    </div>
+                `;
+            }
+            
+            // Update Text Content for 75691
+            document.getElementById('main-title').textContent = 'LEGO® Wicked 格琳達和艾法芭書擋';
+            document.getElementById('crumb-title').textContent = 'LEGO® Wicked 格琳達和艾法芭書擋';
+            document.getElementById('set-num-display').textContent = '#' + setNumber;
+            
+            document.getElementById('detail-year').textContent = '2025';
+            document.getElementById('detail-pieces').textContent = '1327';
+            document.getElementById('detail-age').textContent = '18+';
+            document.getElementById('detail-minifigs').textContent = '6';
+            
+            // Update Buttons
+            const buttons = document.querySelectorAll('.action-btn.secondary-btn');
+            if (buttons.length >= 2) {
+                // PDF Button -> Manual 1/2
+                buttons[0].innerHTML = '格琳達和艾法芭書擋 (1/2)<br> <b>34.71MB (PDF) 下載</b>';
+                buttons[0].href = 'https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6628441.pdf'; // Linking to real set page
+                buttons[0].onclick = null; // Remove alert
+                buttons[0].target = '_blank';
+
+                // 3D Button -> Manual 2/2
+                buttons[1].innerHTML = '格琳達和艾法芭書擋 (2/2)<br> <b>31.47MB (PDF) 下載</b>';
+                buttons[1].href = 'https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6603242.pdf';
+                buttons[1].onclick = null;
+                buttons[1].target = '_blank';
+            }
+        }
     </script>
 </body>
 </html>

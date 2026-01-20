@@ -120,7 +120,7 @@
                 // Check against valid codes
                 // 20260211, 75691 were seen in previous context, keeping them just in case
                 if (input === '20260211' || input === '75691') {
-                    window.location.href = 'product.html';
+                    window.location.href = 'product.html?set=' + input;
                     loadingOverlay.style.display = 'none';
                 } else {
                     loadingOverlay.style.display = 'none';
