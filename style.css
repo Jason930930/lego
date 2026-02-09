@@ -390,49 +390,165 @@ body {
     opacity: 0.8;
 }
 
+/* ================================
+   EASTER EGG STYLES
+   ================================ */
 
-/* App Promo Section */
-.app-promo-section {
+/* Feedback Message Styles */
+.feedback-box {
+    padding: 15px; 
+    margin: 20px auto; 
+    max-width: 600px; 
+    border-radius: 4px; 
+    text-align: left;
+    display: none; /* Hidden by default */
+    animation: fadeIn 0.5s ease-in;
+}
+
+.feedback-love {
+    background: #fff0f5; 
+    border: 1px solid #ffc0cb; 
+    border-left: 4px solid #ff69b4; 
+    color: #c71585;
+}
+
+.feedback-lazy {
+    background: #fff4e5; 
+    border: 1px solid #ffe0b2; 
+    border-left: 4px solid #ffa726; 
+    color: #e65100;
+}
+
+.feedback-wrong {
+    background: #e8f5e9;
+    border: 1px solid #c8e6c9;
+    border-left: 4px solid #66bb6a;
+    color: #2e7d32;
+}
+
+.feedback-error {
+    color: #d01012; 
+    background: #fff4f4; 
+    border: 1px solid #e0e0e0; 
+    border-left: 4px solid #d01012; 
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Badges System */
+.badges-container {
+    margin-top: 60px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px dashed #ccc;
     max-width: 800px;
-    margin: 40px auto;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.badges-title {
     font-size: 16px;
-    line-height: 1.6;
-    color: #2c2c2c;
-}
-
-.app-promo-section h2 {
-    font-size: 28px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     margin-bottom: 20px;
-    font-weight: 700;
 }
 
-.app-promo-section h3 {
-    font-size: 24px;
-    margin-bottom: 15px;
-    font-weight: 700;
-}
-
-.app-promo-section ul {
-    margin: 20px 0;
-    padding-left: 20px;
-}
-
-.app-promo-section li {
-    margin-bottom: 10px;
-}
-
-.app-buttons {
+.badges-grid {
     display: flex;
-    gap: 15px;
-    margin-top: 15px;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
 }
 
-.store-btn img {
-    height: 40px;
-    transition: opacity 0.2s;
+.badge-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100px;
+    transition: all 0.5s ease;
 }
 
-.store-btn:hover img {
-    opacity: 0.8;
+.badge-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    margin-bottom: 10px;
+    transition: all 0.5s ease;
+    
+    /* Locked State Default */
+    background: #222;       /* Dark background */
+    color: transparent;     /* Hide original emoji color */
+    text-shadow: 0 0 0 #444; /* Silhouette color */
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+    cursor: default;
+    filter: grayscale(100%);
+}
+
+.badge-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--lego-text-gray);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s;
+}
+
+.badge-item.unlocked {
+    transform: scale(1.1);
+    animation: badgePop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.badge-item.unlocked .badge-icon {
+    background: var(--lego-yellow);
+    color: initial;          /* Restore emoji color */
+    text-shadow: none;       /* Remove silhouette */
+    box-shadow: 0 0 15px rgba(255, 207, 0, 0.6);
+    cursor: help;
+    filter: none;
+}
+
+.badge-item.unlocked .badge-name {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.badge-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--lego-text-gray);
+}
+
+@keyframes badgePop {
+    0% { transform: scale(0.8); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1.1); }
+}
+
+/* Heart Rain Animation */
+.heart {
+    position: fixed;
+    top: -10vh;
+    transform: translateY(0);
+    animation: fall 3s linear forwards;
+    z-index: 1000;
+    font-size: 24px;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+    }
 }
 

@@ -1,14 +1,14 @@
 # Anniversary LEGO Project
+https://jason930930.github.io/lego/
 
 這是一個偽裝成 LEGO 說明書頁面的週年紀念驚喜網頁。
 
 ## 如何使用
+- git status 
+- git add . 
+- git commit -m "write your message"
+- git push origin main
 
-**git**
-git status
-git add .
-git commit -m "write your message"
-git push origin main
 
 1. **準備影片**：
    - 準備好您的週年紀念影片。
@@ -19,6 +19,7 @@ git push origin main
    - 打開 `index.html`。
    - 搜尋 "Set 5201314" 或 "Our Anniversary Special Edition" 文字，將其修改為您想要的日期或標題。
    - 修改側邊欄的詳細資訊（年份、零件數等）。
+   - **設定彩蛋**：在各種驚喜代碼 (Easter Eggs) 區塊，修改 `HER_BIRTHDAY` 為她的生日，以及 `MY_HEIGHT`/`MY_WEIGHT` 為你的身高體重，讓互動更有趣！
 
 3. **測試**：
    - 在您的電腦上直接雙擊打開 `index.html` 看看效果。
